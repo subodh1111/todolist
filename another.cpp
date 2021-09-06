@@ -100,7 +100,7 @@ using namespace std;
                 {
                     case 1:
                     cout<<"Input the data to be added in the item : " ; 
-                    cin>>item;
+                    getline(cin>>ws, item);
                     cout<<"enter its priority : ";
                     cin>>priority;
                     add(item,priority);
@@ -121,4 +121,4 @@ using namespace std;
                      cout<<"invalid choice\n";
                 }
         }
-    }  
+    } 
