@@ -75,11 +75,9 @@ using namespace std;
             }
             else
             {
-                cout<<"item is :\n";
-                cout<<"priority item\n";
                 while(ptr !=NULL)
                 {
-                    cout<< " "<<ptr->listData;
+                    cout<<"item is : "<<ptr->listData<<" and its priority is :"<<ptr->priority<<"\n";
                     ptr = ptr->next;
                 }
             }
