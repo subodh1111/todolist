@@ -13,7 +13,7 @@ using namespace std;
         todo *next;
     };
     
-    todo *start =NULL;
+    todo *start =NULL, *undo_item = NULL;
     
     void add(string item, int priority)
     {
@@ -58,12 +58,25 @@ using namespace std;
                 temp = start;
                 cout<<"Deleted work is \n"<<temp->listData<<endl;
                 start = start->next;
-                free(temp);
+                undo_item = temp;
                 
             }
             
         }
-            
+        void undo()
+        {
+            if (undo_item != NULL){
+                todo *temp;
+                temp = undo_item;
+                temp->next = start;
+                start = temp;
+                undo_item = NULL;
+                cout<<"Previous deletion undone!"<<endl;
+            }
+            else{
+                cout<<"Undo unsucessful! (Either no deleted data or limit reached.)"<<endl;
+            }
+        }    
             
         void display()
         {
@@ -86,11 +99,12 @@ using namespace std;
         {
             int choice=0, priority;
              string item;
-             while(choice!=4){
+             while(choice!=5){
                 cout<<"1.Insert your task\n";
                 cout<<"2.delete\n";
                 cout<<"3.Display the tasks\n";
-                cout<<"4.Exit\n";
+                cout<<"4.Undo\n";
+                cout<<"5.Exit\n";
                 
                 cout<<"Enter your choice : ";
                 cin>>choice;
@@ -113,6 +127,10 @@ using namespace std;
                     break;
                     
                     case 4:
+                    undo();
+                    break;
+
+                    case 5:
                     break;
                     
                      default:
